@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.mfk.roomexample.ui.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/splashFragment_to_loginFragment"
+            app:destination="@+id/loginFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/splashFragment_to_productFragment"
+            app:destination="@+id/productsFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.mfk.roomexample.ui.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.mfk.roomexample.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/loginFragment_to_registerFragment"
+            app:destination="@+id/registerFragment" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.mfk.roomexample.ui.ProductsFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.mfk.roomexample.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="com.mfk.roomexample.ui.DiscoverFragment"
+        android:label="fragment_discover"
+        tools:layout="@layout/fragment_discover" />
+
+</navigation>

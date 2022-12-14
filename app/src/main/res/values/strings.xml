@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">RoomExample</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="list">List</string>
+    <string name="profile">Profile</string>
+    <string name="discover">Discover</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    <string name="image">image</string>
+    <string name="default_sort">Default</string>
+    <string name="decline_price">Declining in price</string>
+    <string name="rising_price_sort">Rising price</string>
+    <string name="sort_product">Sort Product</string>
+    <string name="clear_filter">Clear Filter</string>
+    <string name="mailorusername">Mail or username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="dont_have_an_account_register">Don\'t have an account? Register</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="register">Register</string>
+    <string name="type_name">name</string>
+    <string name="type_surname">surname</string>
+    <string name="type_email">E-posta</string>
+    <string name="type_password">password</string>
+    <string name="type_username">userName</string>
+    <string name="name_cannot_empty">Name can not empty</string>
+    <string name="name_min_two_character">Name min two character</string>
+    <string name="surname_cannot_empty">Surname can not empty</string>
+    <string name="surname_min_two_character">Surname min two character</string>
+    <string name="email_cannot_empty">Email can not empt</string>
+    <string name="enter_correct_email">Enter correct email</string>
+    <string name="password_cannot_empty">Password can not empty</string>
+    <string name="password_min_six_character">Password min six character</string>
+    <string name="username_cannot_empty">Username can not empty</string>
+    <string name="username_min_two_character">Username min two character</string>
+    <string name="surname">Surname</string>
+    <string name="name">Name</string>
+</resources>
