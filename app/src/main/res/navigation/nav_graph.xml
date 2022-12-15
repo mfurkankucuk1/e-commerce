@@ -43,6 +43,11 @@
             android:id="@+id/loginFragment_to_registerFragment"
             app:destination="@+id/registerFragment" />
 
+        <action
+            android:id="@+id/loginFragment_to_productFragment"
+            app:destination="@+id/productsFragment" />
+
+
     </fragment>
 
 

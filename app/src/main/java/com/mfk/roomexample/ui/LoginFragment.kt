@@ -7,20 +7,30 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.mfk.roomexample.R
+import com.mfk.roomexample.data.repository.PreferencesRepository
 import com.mfk.roomexample.databinding.FragmentLoginBinding
+import com.mfk.roomexample.utils.Constants
+import com.mfk.roomexample.viewModel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
+    @Inject
+    lateinit var preferencesRepository: PreferencesRepository
     private var _binding: FragmentLoginBinding? = null
     private val binding: FragmentLoginBinding get() = _binding!!
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +43,32 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialize()
+        handleClickEvents()
+        subscribeObserve()
         setupRegister()
+    }
+
+    private fun subscribeObserve() {
+        userViewModel.userLoginResponse.observe(viewLifecycleOwner){response->
+            response?.let { result->
+                if (result){
+                    userViewModel.clearUserLoginResponse()
+                    findNavController().navigate(R.id.loginFragment_to_productFragment)
+                    preferencesRepository.setBooleanPreferences(Constants.USER_LOGGED_IN,true)
+                }else{
+                    userViewModel.clearUserLoginResponse()
+                    Toast.makeText(requireContext(), "Check your info", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun handleClickEvents() {
+        binding.apply {
+            btnLogin.setOnClickListener {
+              userViewModel.loginUser(etEmail.text.toString(),etPassword.text.toString())
+            }
+        }
     }
 
     private fun setupRegister() {

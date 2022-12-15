@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mfk.roomexample.MainActivity
 import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.data.model.SortEnum
 import com.mfk.roomexample.databinding.FragmentProductsBinding
@@ -150,6 +151,9 @@ class ProductsFragment : Fragment() {
     }
 
     private fun initialize() {
+        (requireActivity() as? MainActivity)?.let { activity->
+            activity.showBottomNavigation()
+        }
         if (productViewModel.getProductInDb().isEmpty()) {
             productViewModel.getProductWithAPI()
         }else{

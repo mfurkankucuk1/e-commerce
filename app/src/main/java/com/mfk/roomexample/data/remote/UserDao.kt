@@ -3,6 +3,7 @@ package com.mfk.roomexample.data.remote
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.mfk.roomexample.data.model.User
 
 /**
@@ -13,4 +14,7 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: User): Long
+
+    @Query("SELECT CASE WHEN EXISTS (SELECT * FROM User WHERE (userName=:userNameOrEmail OR email=:userNameOrEmail) AND password=:password ) THEN 1 ELSE 0 END")
+    fun loginUser(userNameOrEmail: String, password: String):Boolean
 }
