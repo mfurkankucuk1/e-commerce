@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mfk.roomexample.data.model.User
 import com.mfk.roomexample.data.repository.UserRepository
-import com.mfk.roomexample.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,7 +23,21 @@ class UserViewModel @Inject constructor(
     private var _userLoginResponse: MutableLiveData<Boolean?> = MutableLiveData()
     val userLoginResponse: LiveData<Boolean?> get() = _userLoginResponse
 
-    fun clearUserLoginResponse(){
+    private var _getUserResponse: MutableLiveData<User?> = MutableLiveData()
+    val getUserResponse: LiveData<User?> get() = _getUserResponse
+
+    private var _getUserForLoginResponse: MutableLiveData<User?> = MutableLiveData()
+    val getUserForLoginResponse: LiveData<User?> get() = _getUserForLoginResponse
+
+    fun clearUserResponse() {
+        _getUserResponse.value = null
+    }
+
+    fun clearUserForLoginResponse() {
+        _getUserForLoginResponse.value = null
+    }
+
+    fun clearUserLoginResponse() {
         _userLoginResponse.value = null
     }
 
@@ -36,8 +49,24 @@ class UserViewModel @Inject constructor(
         userRepository.createUser(user)
     }
 
+    fun getUser(id:String){
+        getUserSafeCall(id)
+    }
+
+    fun getUserForLogin(userNameOrEmail: String, password: String){
+        getUserForLoginSafeCall(userNameOrEmail,password)
+    }
+
+    private fun getUserForLoginSafeCall(userNameOrEmail: String, password: String) {
+        _getUserForLoginResponse.value = userRepository.getUserForLogin(userNameOrEmail, password)
+    }
+
+    private fun getUserSafeCall(id: String) {
+        _getUserResponse.value = userRepository.getUser(id)
+    }
+
     fun loginUser(userNameOrEmail: String, password: String) {
-         loginUserSafeCall(userNameOrEmail, password)
+        loginUserSafeCall(userNameOrEmail, password)
     }
 
     private fun loginUserSafeCall(userNameOrEmail: String, password: String) {

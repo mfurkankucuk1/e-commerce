@@ -11,7 +11,7 @@ import java.util.*
  **/
 @Entity(tableName = "User")
 data class User(
-    @PrimaryKey @SerializedName("id") var id: UUID = UUID.randomUUID(),
+    @PrimaryKey @SerializedName("id") var id: String,
     @ColumnInfo(name = "userName") var userName: String? = null,
     @ColumnInfo(name = "name") var name: String? = null,
     @ColumnInfo(name = "surname") var surname: String? = null,

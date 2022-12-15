@@ -46,7 +46,7 @@ class SplashFragment : Fragment() {
     }
 
     private fun setupUserControl() {
-        if (!preferencesRepository.getBooleanPreferences(
+        if (preferencesRepository.getBooleanPreferences(
                 USER_LOGGED_IN
             )
         ) {

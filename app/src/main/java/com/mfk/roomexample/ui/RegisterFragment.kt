@@ -16,6 +16,7 @@ import com.mfk.roomexample.R
 import com.mfk.roomexample.data.model.User
 import com.mfk.roomexample.data.repository.PreferencesRepository
 import com.mfk.roomexample.databinding.FragmentRegisterBinding
+import com.mfk.roomexample.utils.Constants.USER_UUID
 import com.mfk.roomexample.utils.CurrentTimeHelper.getCurrentTime
 import com.mfk.roomexample.viewModel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +53,7 @@ class RegisterFragment : Fragment() {
                 checkRegisterAll()
                 if (checkError()) {
                     val user = User(
-                        id = UUID.randomUUID() ,
+                        id = UUID.randomUUID().toString(),
                         userName = etUsername.text.toString(),
                         name = etName.text.toString(),
                         surname = etSurname.text.toString(),
@@ -60,6 +61,7 @@ class RegisterFragment : Fragment() {
                         password = etPassword.text.toString(),
                         getCurrentTime()
                     )
+                    preferencesRepository.setStringPreferences(USER_UUID, user.id)
                     userViewModel.createUser(user)
                 }
             }

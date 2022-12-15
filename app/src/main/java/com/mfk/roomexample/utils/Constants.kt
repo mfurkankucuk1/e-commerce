@@ -15,6 +15,7 @@ object Constants {
 
     const val PREFERENCES_NAME = "pref"
     const val USER_LOGGED_IN = "userLoggedIn"
+    const val USER_UUID = "userUUID"
 
 
     /**
