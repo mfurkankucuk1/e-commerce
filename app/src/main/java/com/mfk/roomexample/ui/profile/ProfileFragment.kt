@@ -1,4 +1,4 @@
-package com.mfk.roomexample.ui
+package com.mfk.roomexample.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.mfk.roomexample.R
 import com.mfk.roomexample.data.model.User
 import com.mfk.roomexample.data.repository.PreferencesRepository
 import com.mfk.roomexample.databinding.FragmentProfileBinding
@@ -35,6 +37,15 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initialize()
         subscribeObserve()
+        handleClickEvents()
+    }
+
+    private fun handleClickEvents() {
+        binding.apply {
+            imgSettings.setOnClickListener {
+                findNavController().navigate(R.id.profileFragment_to_settingsFragment)
+            }
+        }
     }
 
     private fun subscribeObserve() {
