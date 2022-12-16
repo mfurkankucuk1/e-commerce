@@ -40,4 +40,5 @@
     <string name="name">Name</string>
     <string name="please_check_your_information">Please check your information</string>
     <string name="products_i_recently_visited">Products I recently visited</string>
+    <string name="someting_gone_wrong">Someting gone wrong</string>
 </resources>

@@ -20,6 +20,10 @@ class UserViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : AndroidViewModel(application) {
 
+
+    private var _createUserResponse: MutableLiveData<Long?> = MutableLiveData()
+    val createUserResponse: LiveData<Long?> get() = _createUserResponse
+
     private var _userLoginResponse: MutableLiveData<Boolean?> = MutableLiveData()
     val userLoginResponse: LiveData<Boolean?> get() = _userLoginResponse
 
@@ -31,6 +35,10 @@ class UserViewModel @Inject constructor(
 
     fun clearUserResponse() {
         _getUserResponse.value = null
+    }
+
+    fun clearCreateUserResponse() {
+        _createUserResponse.value = null
     }
 
     fun clearUserForLoginResponse() {
@@ -46,15 +54,15 @@ class UserViewModel @Inject constructor(
     }
 
     private suspend fun createUserSafeCall(user: User) {
-        userRepository.createUser(user)
+        _createUserResponse.value = userRepository.createUser(user)
     }
 
-    fun getUser(id:String){
+    fun getUser(id: String) {
         getUserSafeCall(id)
     }
 
-    fun getUserForLogin(userNameOrEmail: String, password: String){
-        getUserForLoginSafeCall(userNameOrEmail,password)
+    fun getUserForLogin(userNameOrEmail: String, password: String) {
+        getUserForLoginSafeCall(userNameOrEmail, password)
     }
 
     private fun getUserForLoginSafeCall(userNameOrEmail: String, password: String) {

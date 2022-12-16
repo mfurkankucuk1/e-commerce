@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.mfk.roomexample.R
@@ -18,6 +19,7 @@ import com.mfk.roomexample.data.repository.PreferencesRepository
 import com.mfk.roomexample.databinding.FragmentRegisterBinding
 import com.mfk.roomexample.utils.Constants.USER_UUID
 import com.mfk.roomexample.utils.CurrentTimeHelper.getCurrentTime
+import com.mfk.roomexample.utils.ErrorPopupHelper
 import com.mfk.roomexample.viewModel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -44,7 +46,24 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleClickEvent()
+        subscribeObserve()
         setupEdittext()
+    }
+
+    private fun subscribeObserve() {
+        userViewModel.createUserResponse.observe(viewLifecycleOwner) { response ->
+            response?.let { result ->
+                if (result > 0) {
+                    findNavController().popBackStack()
+                } else {
+                    ErrorPopupHelper.showErrorDialog(
+                        requireContext(), layoutInflater,
+                        resources.getString(R.string.someting_gone_wrong)
+                    )
+                }
+                userViewModel.clearCreateUserResponse()
+            }
+        }
     }
 
     private fun handleClickEvent() {
