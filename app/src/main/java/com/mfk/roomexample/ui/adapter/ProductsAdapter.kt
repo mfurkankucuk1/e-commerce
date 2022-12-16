@@ -3,11 +3,8 @@ package com.mfk.roomexample.ui.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mfk.roomexample.data.model.Category
 import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.databinding.ItemRowProductBinding
 import com.mfk.roomexample.utils.CurrencyHelper.getCurrency
@@ -49,8 +46,20 @@ class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>
                 .load(currentItem.image)
                 .fitCenter()
                 .into(imgProduct)
+
+            root.setOnClickListener {
+                onItemClickListener?.let {
+                    it(currentItem)
+                }
+            }
         }
     }
 
     override fun getItemCount() = list.size
+
+    private var onItemClickListener: ((Product) -> Unit)? = null
+
+    fun setOnItemClickListener(listener:(Product)->Unit){
+        onItemClickListener = listener
+    }
 }

@@ -2,6 +2,7 @@ package com.mfk.roomexample.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.networkhelperlibrary.NetworkHelper
@@ -29,34 +30,43 @@ class ProductViewModel @Inject constructor(
         MutableLiveData()
     val getProductResponseInAPI: MutableLiveData<Resource<List<Product>>?> get() = _getProductResponseInAPI
 
+    private var _getSingleProductResponse: MutableLiveData<Product?> = MutableLiveData()
+    val getSingleProductResponse: LiveData<Product?> get() = _getSingleProductResponse
+
+    fun clearSingleProductResponse() {
+        _getSingleProductResponse.value = null
+    }
+
     fun clearGetProductResponseInAPI() {
         _getProductResponseInAPI.value = null
     }
 
-    fun getCountAnDFilter():ArrayList<Category>{
+    fun getCountAnDFilter(): ArrayList<Category> {
         val list = ArrayList<Category>()
-        for (i in productRepository.getCountAnFilter()){
-            list.add(Category(i.count,i.category))
+        for (i in productRepository.getCountAnFilter()) {
+            list.add(Category(i.count, i.category))
         }
         return list
     }
 
-    fun getSortProductWithPrice(type:Int):List<Product>{
+    fun getSortProductWithPrice(type: Int): List<Product> {
         return productRepository.getProductSortWithPrice(type)
     }
 
-    fun getProductInDb():List<Product>{
-       return productRepository.getProductsWithDb()
-    }
-    fun getUnFavoriteProduct():List<Product>{
-       return productRepository.getUnFavoriteProduct()
-    }
-    fun getCategoryFilter(category:String):List<Product>{
-       return productRepository.getCategoryFilter(category)
+    fun getProductInDb(): List<Product> {
+        return productRepository.getProductsWithDb()
     }
 
-    fun updateAddFavorite(id:Int,isAdded:Int) {
-        productRepository.updateAddFavorite(id,isAdded)
+    fun getUnFavoriteProduct(): List<Product> {
+        return productRepository.getUnFavoriteProduct()
+    }
+
+    fun getCategoryFilter(category: String): List<Product> {
+        return productRepository.getCategoryFilter(category)
+    }
+
+    fun updateAddFavorite(id: Int, isAdded: Int) {
+        productRepository.updateAddFavorite(id, isAdded)
     }
 
 
@@ -85,6 +95,14 @@ class ProductViewModel @Inject constructor(
         } else {
             _getProductResponseInAPI.postValue(Resource.Error(NO_INTERNET_CONNECTION))
         }
+    }
+
+    fun getSingleProduct(productId: Int) {
+        getSingleProductSafeCall(productId)
+    }
+
+    private fun getSingleProductSafeCall(productId: Int) {
+        _getSingleProductResponse.value = productRepository.getSingleProduct(productId)
     }
 
 }

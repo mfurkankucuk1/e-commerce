@@ -32,6 +32,9 @@ interface ProductDao {
     @Query("UPDATE Products SET isAddedFavorite =:isAdded WHERE id=:id")
     fun updateAddFavorite(id: Int, isAdded: Int)
 
+    @Query("SELECT * FROM Products WHERE id=:productId")
+    fun getSingleProduct(productId:Int):Product
+
     @Delete
     suspend fun delete(product: Product)
 }

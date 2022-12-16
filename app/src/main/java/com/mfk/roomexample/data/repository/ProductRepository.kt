@@ -34,6 +34,8 @@ class ProductRepository @Inject constructor(
 
     fun updateAddFavorite(id: Int, isAdded: Int) = productDao.updateAddFavorite(id,isAdded)
 
+    fun getSingleProduct(productId:Int) = productDao.getSingleProduct(productId)
+
     /**
      * Inset Products to database
      * **/

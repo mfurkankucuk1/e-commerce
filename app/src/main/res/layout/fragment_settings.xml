@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginEnd="48dp"
+            android:textColor="@color/black"
             android:text="@string/settings"
             android:textAlignment="center"
             android:textSize="18sp" />
@@ -68,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:text="@string/settings"
+                android:text="@string/account_settings"
                 android:textSize="18sp" />
         </LinearLayout>
 

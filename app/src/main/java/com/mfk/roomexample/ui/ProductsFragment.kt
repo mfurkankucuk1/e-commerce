@@ -13,9 +13,11 @@ import android.view.Window
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mfk.roomexample.MainActivity
+import com.mfk.roomexample.R
 import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.data.model.SortEnum
 import com.mfk.roomexample.databinding.FragmentProductsBinding
@@ -27,7 +29,6 @@ import com.mfk.roomexample.utils.CurrentTimeHelper.getCurrentTime
 import com.mfk.roomexample.utils.Resource
 import com.mfk.roomexample.viewModel.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 
 @AndroidEntryPoint
@@ -67,6 +68,19 @@ class ProductsFragment : Fragment() {
             }
             btnFilter.setOnClickListener {
                 filterPopup()
+            }
+        }
+        productsAdapter.apply {
+            setOnItemClickListener { product ->
+                val bundle = Bundle().apply {
+                    product.id?.let {
+                        putInt(resources.getString(R.string.product_id_bundle_key), it)
+                    }
+                }
+                findNavController().navigate(
+                    R.id.productsFragment_to_productDetailFragment,
+                    bundle
+                )
             }
         }
     }
@@ -151,12 +165,12 @@ class ProductsFragment : Fragment() {
     }
 
     private fun initialize() {
-        (requireActivity() as? MainActivity)?.let { activity->
+        (requireActivity() as? MainActivity)?.let { activity ->
             activity.showBottomNavigation()
         }
         if (productViewModel.getProductInDb().isEmpty()) {
             productViewModel.getProductWithAPI()
-        }else{
+        } else {
             handleProductsSuccessResponse(productViewModel.getProductInDb())
         }
     }
@@ -220,7 +234,6 @@ class ProductsFragment : Fragment() {
             }
         }
     }
-
 
     private fun filterPopup(): AlertDialog {
         val builder = AlertDialog.Builder(context).create()

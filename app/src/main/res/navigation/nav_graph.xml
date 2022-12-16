@@ -60,13 +60,20 @@
         android:id="@+id/productsFragment"
         android:name="com.mfk.roomexample.ui.ProductsFragment"
         android:label="fragment_products"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products">
+
+        <action
+            android:id="@+id/productsFragment_to_productDetailFragment"
+            app:destination="@+id/productDetailFragment" />
+
+
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.mfk.roomexample.ui.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
 
         <action
             android:id="@+id/profileFragment_to_settingsFragment"
@@ -79,5 +86,11 @@
         android:name="com.mfk.roomexample.ui.DiscoverFragment"
         android:label="fragment_discover"
         tools:layout="@layout/fragment_discover" />
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.mfk.roomexample.ui.productDetail.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" />
 
 </navigation>
