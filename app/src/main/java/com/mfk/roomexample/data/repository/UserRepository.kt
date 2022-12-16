@@ -9,7 +9,6 @@ import javax.inject.Inject
  **/
 class UserRepository @Inject constructor(private val userDao: UserDao){
 
-
     suspend fun createUser(user: User) = userDao.insert(user)
 
     fun getUser(id:String) = userDao.getUser(id)

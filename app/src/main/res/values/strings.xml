@@ -39,4 +39,5 @@
     <string name="surname">Surname</string>
     <string name="name">Name</string>
     <string name="please_check_your_information">Please check your information</string>
+    <string name="products_i_recently_visited">Products I recently visited</string>
 </resources>

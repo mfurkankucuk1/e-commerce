@@ -10,4 +10,14 @@
     <color name="text_300">#C0C7CE</color>
     <color name="background_a">#F7FAFD</color>
     <color name="red_100">#EB5757</color>
+    <color name="gray">#F3F3F3</color>
+
+    <color name="main">#FF6F00</color>
+    <color name="main_1">#F47474</color>
+
+    <color name="colorGradientStart">#D9FF43</color>
+    <color name="colorGradientCenter">#F67831</color>
+    <color name="colorGradientEnd">#FF1493</color>
+
+
 </resources>
