@@ -3,6 +3,7 @@ package com.mfk.roomexample.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.mfk.roomexample.data.remote.ProductDao
 import com.mfk.roomexample.data.remote.UserDao
 import com.mfk.roomexample.data.repository.PreferencesRepository
@@ -14,6 +15,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import java.util.concurrent.Executors
 import javax.inject.Singleton
 
 /**
@@ -26,7 +28,8 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): ProductDatabase {
-        return Room.databaseBuilder(context,ProductDatabase::class.java,PRODUCT_DATABASE_NAME).allowMainThreadQueries().build()
+        return Room.databaseBuilder(context, ProductDatabase::class.java, PRODUCT_DATABASE_NAME)
+            .allowMainThreadQueries().build()
     }
 
     @Singleton
@@ -38,7 +41,13 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideUserDatabase(@ApplicationContext context: Context): UserDatabase {
-        return Room.databaseBuilder(context,UserDatabase::class.java,USER_DATABASE_NAME).allowMainThreadQueries().build()
+        val dbBuilder = Room.databaseBuilder(
+            context, UserDatabase::class.java, USER_DATABASE_NAME
+        )
+        dbBuilder.setQueryCallback({ sqlQuery, bindArgs ->
+            println(": $sqlQuery SQL Args: $bindArgs")
+        }, Executors.newSingleThreadExecutor())
+        return dbBuilder.allowMainThreadQueries().build()
     }
 
     @Singleton

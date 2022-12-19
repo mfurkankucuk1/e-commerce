@@ -33,6 +33,13 @@ class ProductViewModel @Inject constructor(
     private var _getSingleProductResponse: MutableLiveData<Product?> = MutableLiveData()
     val getSingleProductResponse: LiveData<Product?> get() = _getSingleProductResponse
 
+    private var _getCategoryProductsResponse: MutableLiveData<List<Product>> = MutableLiveData()
+    val getCategoryProductsResponse: LiveData<List<Product>> get() = _getCategoryProductsResponse
+
+    fun clearCategoryProductResponse() {
+        _getCategoryProductsResponse.value = null
+    }
+
     fun clearSingleProductResponse() {
         _getSingleProductResponse.value = null
     }
@@ -103,6 +110,14 @@ class ProductViewModel @Inject constructor(
 
     private fun getSingleProductSafeCall(productId: Int) {
         _getSingleProductResponse.value = productRepository.getSingleProduct(productId)
+    }
+
+    fun getCategoryProduct(categoryName: String) {
+        getCategoryProductSafeCall(categoryName)
+    }
+
+    private fun getCategoryProductSafeCall(categoryName: String) {
+        _getCategoryProductsResponse.value = productRepository.getCategoryFilter(categoryName)
     }
 
 }

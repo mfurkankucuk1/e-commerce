@@ -73,8 +73,14 @@ class ProductsFragment : Fragment() {
         productsAdapter.apply {
             setOnItemClickListener { product ->
                 val bundle = Bundle().apply {
-                    product.id?.let {
-                        putInt(resources.getString(R.string.product_id_bundle_key), it)
+                    product.id?.let { productId ->
+                        putInt(resources.getString(R.string.product_id_bundle_key), productId)
+                    }
+                    product.category?.let { categoryName ->
+                        putString(
+                            resources.getString(R.string.product_category_name_bundle_key),
+                            categoryName
+                        )
                     }
                 }
                 findNavController().navigate(
