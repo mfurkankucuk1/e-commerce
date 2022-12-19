@@ -117,7 +117,7 @@ class ProductViewModel @Inject constructor(
     }
 
     private fun getCategoryProductSafeCall(categoryName: String) {
-        _getCategoryProductsResponse.value = productRepository.getCategoryFilter(categoryName)
+        _getCategoryProductsResponse.value = productRepository.getProductsWithCategory(categoryName)
     }
 
 }

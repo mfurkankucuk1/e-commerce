@@ -23,6 +23,9 @@ interface ProductDao {
     @Query("SELECT * FROM Products WHERE category = :category")
     fun getCategoryFilter(category: String): List<Product>
 
+    @Query("SELECT * FROM Products WHERE category LIKE :category")
+    fun getProductsWithCategory(category: String): List<Product>
+
     @Query("SELECT * FROM Products ORDER BY CASE WHEN :isAsc = 1 THEN price END ASC,CASE WHEN :isAsc = 0 THEN price END DESC")
     fun getProductSortWithPrice(isAsc: Int): List<Product>
 
@@ -33,7 +36,7 @@ interface ProductDao {
     fun updateAddFavorite(id: Int, isAdded: Int)
 
     @Query("SELECT * FROM Products WHERE id=:productId")
-    fun getSingleProduct(productId:Int):Product
+    fun getSingleProduct(productId: Int): Product
 
     @Delete
     suspend fun delete(product: Product)

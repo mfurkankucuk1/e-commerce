@@ -13,6 +13,8 @@ object Constants {
 
     const val USER_DATABASE_NAME = "user.db"
 
+    const val FAVORITE_DATABASE_NAME = "favorite.db"
+
     const val PREFERENCES_NAME = "pref"
     const val USER_LOGGED_IN = "userLoggedIn"
     const val USER_UUID = "userUUID"

@@ -46,4 +46,6 @@
     <string name="settings">Settings</string>
     <string name="product_id_bundle_key">product_id_bundle_key</string>
     <string name="product_category_name_bundle_key">product_category_name_bundle_key</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="other_products_in_this_category">Other products in this category</string>
 </resources>

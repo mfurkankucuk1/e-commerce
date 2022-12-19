@@ -11,20 +11,24 @@
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable-v24/gradation_black.xml" value="0.2655" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable-v24/ic_arrow_back_black_24dp.xml" value="0.115" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable-v24/ic_clear_text.xml" value="0.1405" />
+        <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/background_product_name.xml" value="0.1525" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/fab_background.xml" value="0.2485" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/ic_close.xml" value="0.1" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/ic_error.xml" value="0.1" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/ic_home.xml" value="0.1" />
+        <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/ic_information.xml" value="0.315" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/ic_like.xml" value="0.1" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/ic_list.xml" value="0.1" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/login_gradient.xml" value="0.1405" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/oval.xml" value="0.1" />
+        <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/profile_background.xml" value="0.1525" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/drawable/search_background.xml" value="0.1765" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/layout/activity_main.xml" value="0.16872427983539096" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/layout/fragment_discover.xml" value="0.25" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/layout/fragment_favorite.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/layout/fragment_login.xml" value="0.2" />
+        <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/layout/fragment_product_detail.xml" value="0.22" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/layout/fragment_products.xml" value="0.22" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Users/HIZLIGELIYO/Desktop/RoomExample/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />

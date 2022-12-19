@@ -32,6 +32,8 @@ class ProductRepository @Inject constructor(
 
     fun getCategoryFilter(category:String) = productDao.getCategoryFilter(category)
 
+    fun getProductsWithCategory(category:String) = productDao.getProductsWithCategory(category)
+
     fun updateAddFavorite(id: Int, isAdded: Int) = productDao.updateAddFavorite(id,isAdded)
 
     fun getSingleProduct(productId:Int) = productDao.getSingleProduct(productId)
