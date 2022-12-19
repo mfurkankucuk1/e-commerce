@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.mfk.roomexample.MainActivity
 import com.mfk.roomexample.R
+import com.mfk.roomexample.data.model.Cart
 import com.mfk.roomexample.data.model.Favorite
 import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.data.repository.PreferencesRepository
@@ -19,6 +20,7 @@ import com.mfk.roomexample.ui.adapter.ProductsAdapter
 import com.mfk.roomexample.utils.Constants.USER_UUID
 import com.mfk.roomexample.utils.CurrencyHelper.getCurrency
 import com.mfk.roomexample.utils.CurrentTimeHelper.getCurrentTime
+import com.mfk.roomexample.viewModel.CartViewModel
 import com.mfk.roomexample.viewModel.FavoriteViewModel
 import com.mfk.roomexample.viewModel.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +35,7 @@ class ProductDetailFragment : Fragment() {
     private val binding: FragmentProductDetailBinding get() = _binding!!
     private val productViewModel: ProductViewModel by activityViewModels()
     private val favoriteViewModel: FavoriteViewModel by activityViewModels()
+    private val cartViewModel: CartViewModel by activityViewModels()
     private var productId = -1
     private var categoryName = ""
     private val productsAdapter: ProductsAdapter by lazy { ProductsAdapter() }
@@ -51,7 +54,6 @@ class ProductDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         handleArgument()
     }
-
 
     private fun handleArgument() {
         val productId = arguments?.get(getString(R.string.product_id_bundle_key))
@@ -95,6 +97,9 @@ class ProductDetailFragment : Fragment() {
 
                 }
             }
+            btnAddCart.setOnClickListener {
+                setupAddCart()
+            }
         }
         productsAdapter.apply {
             setOnItemClickListener { product ->
@@ -107,6 +112,10 @@ class ProductDetailFragment : Fragment() {
                 getProductDetail()
             }
         }
+    }
+
+    private fun setupAddCart() {
+        cartViewModel.getCartInformation(productId)
     }
 
     private fun setupAdapter() {
@@ -122,14 +131,15 @@ class ProductDetailFragment : Fragment() {
                 productViewModel.clearSingleProductResponse()
             }
         }
-
         productViewModel.getCategoryProductsResponse.observe(viewLifecycleOwner) { response ->
             response?.let { result ->
                 handleProductsResponse(result)
                 productViewModel.clearCategoryProductResponse()
             }
         }
-
+        /**
+         * FAVORITE
+         * **/
         favoriteViewModel.addFavoriteResponse.observe(viewLifecycleOwner) { response ->
             response?.let { result ->
                 if (result > 0) {
@@ -137,19 +147,43 @@ class ProductDetailFragment : Fragment() {
                 }
             }
         }
-
         favoriteViewModel.deleteFavoriteResponse.observe(viewLifecycleOwner) { response ->
             response?.let { result ->
                 getProductFavorite()
             }
         }
-
         favoriteViewModel.getProductFavorite.observe(viewLifecycleOwner) { response ->
             response?.let { result ->
                 handleProductFavoriteResponse(result)
             }
         }
+        /**
+         * CART
+         * **/
+        cartViewModel.getCartInformationResponse.observe(viewLifecycleOwner) { response ->
+            response?.let { result ->
+                handleCartInformationResponse(result)
+            }
+        }
+        cartViewModel.getCartItemResponse.observe(viewLifecycleOwner) { response ->
+            response?.let { result ->
+                handleCartItemResponse(result)
+            }
+        }
 
+    }
+
+    private fun handleCartItemResponse(result: Cart) {
+        cartViewModel.updateQuantity(productId = productId, quantity = result.quantity.plus(1))
+    }
+
+    private fun handleCartInformationResponse(result: Boolean) {
+        if (result) {
+            cartViewModel.getCartItem(productId)
+        } else {
+            val cart = Cart(productId = productId, quantity = 1)
+            cartViewModel.addCart(cart)
+        }
     }
 
     private fun handleProductFavoriteResponse(result: Boolean) {

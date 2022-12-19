@@ -3,7 +3,7 @@
 
     <item android:drawable="@drawable/oval"/>
     <item
-        android:drawable="@drawable/ic_home"
+        android:drawable="@drawable/ic_basket"
         android:gravity="center" />
 
 

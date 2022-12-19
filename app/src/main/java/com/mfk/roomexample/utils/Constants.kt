@@ -11,6 +11,8 @@ object Constants {
 
     const val PRODUCT_DATABASE_NAME = "product.db"
 
+    const val CART_DATABASE_NAME = "cart.db"
+
     const val USER_DATABASE_NAME = "user.db"
 
     const val FAVORITE_DATABASE_NAME = "favorite.db"
