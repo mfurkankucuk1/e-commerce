@@ -45,6 +45,9 @@ class ProfileFragment : Fragment() {
             imgSettings.setOnClickListener {
                 findNavController().navigate(R.id.profileFragment_to_settingsFragment)
             }
+            mcFavorite.setOnClickListener {
+                findNavController().navigate(R.id.profileFragment_to_favoriteFragment)
+            }
         }
     }
 

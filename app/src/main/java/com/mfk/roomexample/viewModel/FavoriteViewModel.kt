@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mfk.roomexample.data.model.Favorite
+import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.data.repository.FavoriteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -29,12 +30,20 @@ class FavoriteViewModel @Inject constructor(
     private var _getProductFavoriteResponse: MutableLiveData<Boolean?> = MutableLiveData()
     val getProductFavorite: LiveData<Boolean?> get() = _getProductFavoriteResponse
 
-    fun getProductFavorite(userUUD: String, productId: Int){
-        getProductFavoriteSafeCall(userUUD,productId)
+    private var _getCustomerFavoritesResponse: MutableLiveData<List<Product>?> = MutableLiveData()
+    val getCustomerFavoriteResponse: LiveData<List<Product>?> get() = _getCustomerFavoritesResponse
+
+    fun clearCustomerFavorites() {
+        _getCustomerFavoritesResponse.value = null
+    }
+
+    fun getProductFavorite(userUUD: String, productId: Int) {
+        getProductFavoriteSafeCall(userUUD, productId)
     }
 
     private fun getProductFavoriteSafeCall(userUUD: String, productId: Int) {
-        _getProductFavoriteResponse.value = favoriteRepository.getProductFavorite(userUUD,productId)
+        _getProductFavoriteResponse.value =
+            favoriteRepository.getProductFavorite(userUUD, productId)
     }
 
     fun addFavorite(favorite: Favorite) = viewModelScope.launch {
@@ -51,6 +60,14 @@ class FavoriteViewModel @Inject constructor(
 
     private suspend fun deleteFavoriteSafeCall(userUUD: String, productId: Int) {
         _deleteFavoriteResponse.value = favoriteRepository.deleteFavorite(userUUD, productId)
+    }
+
+    fun getCustomerFavorites(userUUID: String) = viewModelScope.launch {
+        getCustomerFavoritesSafeCall(userUUID)
+    }
+
+    private suspend fun getCustomerFavoritesSafeCall(userUUID: String) {
+        _getCustomerFavoritesResponse.value = favoriteRepository.getCustomerFavorites(userUUID)
     }
 
 }

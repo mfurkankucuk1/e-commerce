@@ -1,7 +1,7 @@
 package com.mfk.roomexample.data.repository
 
 import com.mfk.roomexample.data.model.Product
-import com.mfk.roomexample.data.remote.ProductDao
+import com.mfk.roomexample.data.remote.DatabaseDao
 import com.mfk.roomexample.data.remote.ProductService
 import javax.inject.Inject
 
@@ -9,7 +9,7 @@ import javax.inject.Inject
  * Created by M.Furkan KÜÇÜK on 7.12.2022
  **/
 class ProductRepository @Inject constructor(
-    private val productDao: ProductDao,
+    private val databaseDao: DatabaseDao,
     private val productService: ProductService
 ) {
 
@@ -22,26 +22,26 @@ class ProductRepository @Inject constructor(
      * Get Products with database
      * **/
 
-    fun getProductsWithDb() = productDao.getProducts()
+    fun getProductsWithDb() = databaseDao.getProducts()
 
-    fun getUnFavoriteProduct() = productDao.getUnFavoriteProduct()
+    fun getUnFavoriteProduct() = databaseDao.getUnFavoriteProduct()
 
-    fun getCountAnFilter() = productDao.getCountAnFilter()
+    fun getCountAnFilter() = databaseDao.getCountAnFilter()
 
-    fun getProductSortWithPrice(type:Int) = productDao.getProductSortWithPrice(type)
+    fun getProductSortWithPrice(type:Int) = databaseDao.getProductSortWithPrice(type)
 
-    fun getCategoryFilter(category:String) = productDao.getCategoryFilter(category)
+    fun getCategoryFilter(category:String) = databaseDao.getCategoryFilter(category)
 
-    fun getProductsWithCategory(category:String) = productDao.getProductsWithCategory(category)
+    fun getProductsWithCategory(category:String) = databaseDao.getProductsWithCategory(category)
 
-    fun updateAddFavorite(id: Int, isAdded: Int) = productDao.updateAddFavorite(id,isAdded)
+    fun updateAddFavorite(id: Int, isAdded: Int) = databaseDao.updateAddFavorite(id,isAdded)
 
-    fun getSingleProduct(productId:Int) = productDao.getSingleProduct(productId)
+    fun getSingleProduct(productId:Int) = databaseDao.getSingleProduct(productId)
 
     /**
      * Inset Products to database
      * **/
 
-    suspend fun insertProducts(products: Product) = productDao.insert(products)
+    suspend fun insertProducts(products: Product) = databaseDao.insert(products)
 
 }

@@ -9,13 +9,7 @@ object Constants {
 
     const val PRODUCTS_END_POINTS = "products"
 
-    const val PRODUCT_DATABASE_NAME = "product.db"
-
-    const val CART_DATABASE_NAME = "cart.db"
-
-    const val USER_DATABASE_NAME = "user.db"
-
-    const val FAVORITE_DATABASE_NAME = "favorite.db"
+    const val PRODUCT_DATABASE_NAME = "application.db"
 
     const val PREFERENCES_NAME = "pref"
     const val USER_LOGGED_IN = "userLoggedIn"

@@ -13,6 +13,7 @@ import com.mfk.roomexample.utils.Constants.USER_UUID
 import com.mfk.roomexample.utils.CurrentTimeHelper.getCurrentTime
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -78,6 +79,14 @@ class CartViewModel @Inject constructor(
             productId,
             quantity
         )
+    }
+
+    fun getCustomerCart(userUUID: String) = viewModelScope.launch {
+        getCustomerCartSafeCall(userUUID)
+    }
+
+    private suspend fun getCustomerCartSafeCall(userUUID: String) {
+        Timber.e(cartRepository.getCustomerCart(userUUID).toString())
     }
 
 }

@@ -33,6 +33,12 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.mfk.roomexample.ui.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
         android:id="@+id/registerFragment"
         android:name="com.mfk.roomexample.ui.RegisterFragment"
         android:label="fragment_register"
@@ -78,6 +84,10 @@
         <action
             android:id="@+id/profileFragment_to_settingsFragment"
             app:destination="@+id/settingsFragment" />
+
+        <action
+            android:id="@+id/profileFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
 
     </fragment>
 
