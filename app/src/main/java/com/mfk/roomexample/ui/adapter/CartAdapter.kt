@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.mfk.roomexample.data.model.CartModel
 import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.databinding.ItemRowCartBinding
 import com.mfk.roomexample.utils.CurrencyHelper.getCurrency
@@ -18,7 +19,7 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
     inner class CartViewHolder(val binding: ItemRowCartBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    var list = ArrayList<Product>()
+    var list = ArrayList<CartModel>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value

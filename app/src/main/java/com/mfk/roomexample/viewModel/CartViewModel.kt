@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mfk.roomexample.data.model.Cart
+import com.mfk.roomexample.data.model.CartModel
 import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.data.repository.CartRepository
 import com.mfk.roomexample.data.repository.PreferencesRepository
@@ -35,8 +36,8 @@ class CartViewModel @Inject constructor(
     private var _getCartItemResponse: MutableLiveData<Cart?> = MutableLiveData()
     val getCartItemResponse: LiveData<Cart?> get() = _getCartItemResponse
 
-    private var _getCustomerCartResponse: MutableLiveData<List<Product>?> = MutableLiveData()
-    val getCustomerCartResponse: LiveData<List<Product>?> get() = _getCustomerCartResponse
+    private var _getCustomerCartResponse: MutableLiveData<List<CartModel>?> = MutableLiveData()
+    val getCustomerCartResponse: LiveData<List<CartModel>?> get() = _getCustomerCartResponse
 
     fun clearCustomerCartResponse() {
         _getCustomerCartResponse.value = null

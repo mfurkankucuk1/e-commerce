@@ -98,7 +98,7 @@ interface DatabaseDao {
 
     @Transaction
     @Query("SELECT * FROM Products INNER JOIN Cart ON Products.id = Cart.productId WHERE userUUID=:userUUID")
-    suspend fun getCustomerCart(userUUID: String): List<Product>
+    suspend fun getCustomerCart(userUUID: String): List<CartModel>
 
 
 

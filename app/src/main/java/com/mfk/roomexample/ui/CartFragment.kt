@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.mfk.roomexample.data.model.CartModel
 import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.data.repository.PreferencesRepository
 import com.mfk.roomexample.databinding.FragmentCartBinding
@@ -24,7 +25,7 @@ class CartFragment : Fragment() {
     private val binding: FragmentCartBinding get() = _binding!!
     private val cartViewModel: CartViewModel by activityViewModels()
     private val cartAdapter: CartAdapter by lazy { CartAdapter() }
-    private var cartList = ArrayList<Product>()
+    private var cartList = ArrayList<CartModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,7 +57,7 @@ class CartFragment : Fragment() {
         }
     }
 
-    private fun handleCartResponse(result: List<Product>) {
+    private fun handleCartResponse(result: List<CartModel>) {
         cartList = ArrayList()
         cartList.addAll(result)
         cartAdapter.list = cartList
