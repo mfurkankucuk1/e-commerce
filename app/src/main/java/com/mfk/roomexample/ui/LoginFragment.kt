@@ -188,13 +188,6 @@ class LoginFragment : Fragment() {
                                 getString(R.string.email_cannot_empty)
                             )
                         }
-                        !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                            setupInputError(
-                                layoutEmail,
-                                etEmail,
-                                getString(R.string.enter_correct_email)
-                            )
-                        }
                         else -> {
                             setupInputError(layoutEmail, etEmail, null)
                         }
