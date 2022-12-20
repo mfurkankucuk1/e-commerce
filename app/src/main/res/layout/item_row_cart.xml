@@ -23,6 +23,7 @@
             android:layout_height="80dp"
             android:elevation="1dp"
             app:strokeColor="@color/gray"
+            android:padding="2dp"
             app:strokeWidth="1dp">
 
             <ImageView
