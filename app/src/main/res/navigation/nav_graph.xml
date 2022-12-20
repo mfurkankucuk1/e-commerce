@@ -89,6 +89,10 @@
             android:id="@+id/profileFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
 
+        <action
+            android:id="@+id/profileFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+
     </fragment>
 
     <fragment
@@ -102,5 +106,10 @@
         android:name="com.mfk.roomexample.ui.productDetail.ProductDetailFragment"
         android:label="fragment_product_detail"
         tools:layout="@layout/fragment_product_detail" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.mfk.roomexample.ui.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 
 </navigation>

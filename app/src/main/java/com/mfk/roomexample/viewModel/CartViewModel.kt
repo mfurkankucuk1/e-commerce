@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mfk.roomexample.data.model.Cart
+import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.data.repository.CartRepository
 import com.mfk.roomexample.data.repository.PreferencesRepository
 import com.mfk.roomexample.utils.Constants
@@ -13,7 +14,6 @@ import com.mfk.roomexample.utils.Constants.USER_UUID
 import com.mfk.roomexample.utils.CurrentTimeHelper.getCurrentTime
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -34,6 +34,13 @@ class CartViewModel @Inject constructor(
 
     private var _getCartItemResponse: MutableLiveData<Cart?> = MutableLiveData()
     val getCartItemResponse: LiveData<Cart?> get() = _getCartItemResponse
+
+    private var _getCustomerCartResponse: MutableLiveData<List<Product>?> = MutableLiveData()
+    val getCustomerCartResponse: LiveData<List<Product>?> get() = _getCustomerCartResponse
+
+    fun clearCustomerCartResponse() {
+        _getCustomerCartResponse.value = null
+    }
 
     fun getCartItem(productId: Int) = viewModelScope.launch {
         getCartItemSafeCall(productId)
@@ -86,7 +93,7 @@ class CartViewModel @Inject constructor(
     }
 
     private suspend fun getCustomerCartSafeCall(userUUID: String) {
-        Timber.e(cartRepository.getCustomerCart(userUUID).toString())
+        _getCustomerCartResponse.value = cartRepository.getCustomerCart(userUUID)
     }
 
 }

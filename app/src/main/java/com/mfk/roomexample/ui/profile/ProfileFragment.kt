@@ -48,6 +48,9 @@ class ProfileFragment : Fragment() {
             mcFavorite.setOnClickListener {
                 findNavController().navigate(R.id.profileFragment_to_favoriteFragment)
             }
+            mcBasket.setOnClickListener {
+                findNavController().navigate(R.id.profileFragment_to_cartFragment)
+            }
         }
     }
 

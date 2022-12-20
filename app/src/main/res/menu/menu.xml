@@ -7,7 +7,7 @@
         android:title="@string/list" />
 
     <item
-        android:id="@+id/discoverFragment"
+        android:id="@+id/cartFragment"
         android:title="" />
 
     <item

@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupFabNavigate() {
         binding.apply {
             btnMainScreen.setOnClickListener {
-                navController.navigate(R.id.discoverFragment)
+                navController.navigate(R.id.cartFragment)
             }
         }
     }
