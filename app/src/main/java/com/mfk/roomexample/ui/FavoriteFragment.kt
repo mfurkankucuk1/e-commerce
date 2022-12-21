@@ -9,9 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mfk.roomexample.R
-import com.mfk.roomexample.data.model.Product
+import com.mfk.roomexample.data.model.FavoriteModel
 import com.mfk.roomexample.data.repository.PreferencesRepository
 import com.mfk.roomexample.databinding.FragmentFavoriteBinding
+import com.mfk.roomexample.ui.adapter.FavoriteAdapter
 import com.mfk.roomexample.ui.adapter.ProductsAdapter
 import com.mfk.roomexample.utils.Constants.USER_UUID
 import com.mfk.roomexample.viewModel.FavoriteViewModel
@@ -26,8 +27,8 @@ class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding: FragmentFavoriteBinding get() = _binding!!
     private val favoriteViewModel: FavoriteViewModel by activityViewModels()
-    private val productsAdapter: ProductsAdapter by lazy { ProductsAdapter() }
-    private var favoritesList = ArrayList<Product>()
+    private val favoriteAdapter: FavoriteAdapter by lazy { FavoriteAdapter() }
+    private var favoritesList = ArrayList<FavoriteModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,17 +55,17 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-    private fun handleFavoritesResponse(result: List<Product>) {
+    private fun handleFavoritesResponse(result: List<FavoriteModel>) {
         favoritesList = ArrayList()
         favoritesList.addAll(result)
-        productsAdapter.list = favoritesList
+        favoriteAdapter.list = favoritesList
     }
 
     private fun setupAdapter() {
         binding.apply {
             binding.apply {
                 rvFavorites.setHasFixedSize(true)
-                rvFavorites.adapter = productsAdapter
+                rvFavorites.adapter = favoriteAdapter
                 rvFavorites.layoutManager = GridLayoutManager(requireContext(), 2)
             }
         }
@@ -76,10 +77,10 @@ class FavoriteFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
-        productsAdapter.apply {
+        favoriteAdapter.apply {
             setOnItemClickListener { product ->
                 val bundle = Bundle().apply {
-                    product.id?.let { productId ->
+                    product.productId?.let { productId ->
                         putInt(resources.getString(R.string.product_id_bundle_key), productId)
                     }
                     product.category?.let { categoryName ->

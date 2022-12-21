@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mfk.roomexample.data.model.Favorite
+import com.mfk.roomexample.data.model.FavoriteModel
 import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.data.repository.FavoriteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,8 +31,8 @@ class FavoriteViewModel @Inject constructor(
     private var _getProductFavoriteResponse: MutableLiveData<Boolean?> = MutableLiveData()
     val getProductFavorite: LiveData<Boolean?> get() = _getProductFavoriteResponse
 
-    private var _getCustomerFavoritesResponse: MutableLiveData<List<Product>?> = MutableLiveData()
-    val getCustomerFavoriteResponse: LiveData<List<Product>?> get() = _getCustomerFavoritesResponse
+    private var _getCustomerFavoritesResponse: MutableLiveData<List<FavoriteModel>?> = MutableLiveData()
+    val getCustomerFavoriteResponse: LiveData<List<FavoriteModel>?> get() = _getCustomerFavoritesResponse
 
     fun clearCustomerFavorites() {
         _getCustomerFavoritesResponse.value = null

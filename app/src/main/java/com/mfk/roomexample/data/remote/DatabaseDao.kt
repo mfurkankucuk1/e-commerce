@@ -61,8 +61,8 @@ interface DatabaseDao {
     @Query("DELETE FROM Favorites WHERE (userUUID=:userUUID AND productId=:productId)")
     suspend fun deleteFavorite(userUUID: String, productId: Int): Int
 
-    @Query("SELECT * FROM Products INNER JOIN Favorites ON Products.id = Favorites.id WHERE userUUID=:userUUID")
-    suspend fun getCustomerFavorites(userUUID: String): List<Product>
+    @Query("SELECT * FROM Products INNER JOIN Favorites ON Products.id = Favorites.productId WHERE userUUID=:userUUID")
+    suspend fun getCustomerFavorites(userUUID: String): List<FavoriteModel>
 
 
     /**
