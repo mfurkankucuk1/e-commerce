@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.mfk.roomexample.R
 import com.mfk.roomexample.data.repository.PreferencesRepository
 import com.mfk.roomexample.databinding.FragmentSettingsBinding
 import com.mfk.roomexample.utils.Constants.USER_LOGGED_IN
@@ -45,6 +46,9 @@ class SettingsFragment : Fragment() {
             }
             imgBack.setOnClickListener {
                 findNavController().popBackStack()
+            }
+            mcAccountSetting.setOnClickListener {
+                findNavController().navigate(R.id.settingsFragment_to_accountSettingFragment)
             }
         }
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.mfk.roomexample.MainActivity
 import com.mfk.roomexample.R
 import com.mfk.roomexample.data.model.User
 import com.mfk.roomexample.data.repository.PreferencesRepository
@@ -74,6 +75,9 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initialize() {
+        (requireActivity() as? MainActivity)?.let { activity ->
+            activity.showBottomNavigation()
+        }
         userViewModel.getUser(preferencesRepository.getStringPreferences(USER_UUID))
     }
 }
