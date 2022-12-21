@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.mfk.roomexample.R
 import com.mfk.roomexample.data.model.Product
 import com.mfk.roomexample.data.repository.PreferencesRepository
 import com.mfk.roomexample.databinding.FragmentFavoriteBinding
@@ -73,6 +74,22 @@ class FavoriteFragment : Fragment() {
         binding.apply {
             imgBack.setOnClickListener {
                 findNavController().popBackStack()
+            }
+        }
+        productsAdapter.apply {
+            setOnItemClickListener { product ->
+                val bundle = Bundle().apply {
+                    product.id?.let { productId ->
+                        putInt(resources.getString(R.string.product_id_bundle_key), productId)
+                    }
+                    product.category?.let { categoryName ->
+                        putString(
+                            resources.getString(R.string.product_category_name_bundle_key),
+                            categoryName
+                        )
+                    }
+                }
+                findNavController().navigate(R.id.favoriteFragment_to_productDetailFragment, bundle)
             }
         }
     }

@@ -36,7 +36,13 @@
         android:id="@+id/favoriteFragment"
         android:name="com.mfk.roomexample.ui.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite">
+
+        <action
+            android:id="@+id/favoriteFragment_to_productDetailFragment"
+            app:destination="@+id/productDetailFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/registerFragment"
