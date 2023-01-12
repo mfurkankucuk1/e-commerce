@@ -115,7 +115,10 @@ dependencies {
     //Card Slide
     implementation 'com.yuyakaido.android:card-stack-view:2.3.4'
 
-
+    implementation 'com.facebook.stetho:stetho:1.6.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
+    implementation 'com.facebook.stetho:stetho-urlconnection:1.6.0'
+    implementation 'com.facebook.stetho:stetho-js-rhino:1.6.0'
 
 }
 

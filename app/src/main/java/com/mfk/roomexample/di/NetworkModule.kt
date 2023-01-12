@@ -1,5 +1,6 @@
 package com.mfk.roomexample.di
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.mfk.roomexample.data.remote.ProductService
 import com.mfk.roomexample.utils.Constants.BASE_URL
 import dagger.Module
@@ -10,7 +11,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 /**
@@ -39,6 +39,7 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addNetworkInterceptor(StethoInterceptor())
             .build()
     }
 

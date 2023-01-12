@@ -80,6 +80,10 @@ interface DatabaseDao {
 
     @Query("SELECT CASE WHEN EXISTS (SELECT * FROM User WHERE (userName=:userNameOrEmail OR email=:userNameOrEmail) AND password=:password ) THEN 1 ELSE 0 END")
     fun loginUser(userNameOrEmail: String, password: String):Boolean
+////    @Query("UPDATE Products SET isAddedFavorite =:isAdded WHERE id=:id")
+//    @Query("Update User SET email = user.email AND surname = user.surname")
+//    suspend fun updateUserInformation(user:User):
+
 
 /**
  * CART
